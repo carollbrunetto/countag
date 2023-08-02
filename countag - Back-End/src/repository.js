@@ -1,44 +1,43 @@
 const connection = require('./connection');
 
 
-
-const repository = async () => {
-
-
-   module.exports = function inserirConsultas(url, data) {
-        const novaURL = url;
-        const novaData = data;
-        
-        const insertQueryConsultas = 'INSERT INTO consultas (url, data) VALUES (?, ?)';
+function inserirConsultas(url) {
+    console.log('entrou')
+    const novaURL = url;
+    const novaData = new Date();
     
-        connection.query(insertQueryConsultas, [novaURL, novaData], (err, result) => {
-            if (err) {
-                console.error('Erro ao executar o INSERT:', err);
-                return;
-            }
-            console.log('Novo consulta inserida com sucesso!');
-            console.log('ID da nova consulta:', result.insertId);
-            res.status(200).send('Novo usuário inserido com sucesso!');
-        });
-    } 
+    const insertQueryConsultas = 'INSERT INTO consultas (url, data) VALUES (?, ?)';
 
-    module.exports = function inserirContagemTag(tag, quantidade) {
-        const novaTag = tag;
-        const novaQuantidade = quantidade;
-        
-        const insertQueryConsultas = 'INSERT INTO contagem_tag (tag, quantidade) VALUES (?, ?)';
+    connection.query(insertQueryConsultas, [novaURL, novaData], (err, result) => {
+        if (err) {
+            console.error('Erro ao executar o INSERT:', err);
+            return;
+        }
+        console.log('Nova consulta inserida com sucesso!');
+        console.log('ID da nova consulta:', result.insertId);
+    });
+
+    return selectConsultas();
+} 
+
+function inserirContagemTag(tag, quantidade) {
+    const novaTag = tag;
+    const novaQuantidade = quantidade;
     
-        connection.query(insertQueryConsultas, [novaTag, novaQuantidade], (err, result) => {
-            if (err) {
-                console.error('Erro ao executar o INSERT:', err);
-                return;
-            }
-            console.log('Novo consulta inserida com sucesso!');
-            console.log('ID do novo usuário:', result.insertId);
-        });
-    } 
+    const insertQueryConsultas = 'INSERT INTO contagem_tag (tag, quantidade) VALUES (?, ?)';
 
-    const query = connection.promise().query(`SELECT * FROM consultas`).then(
+    connection.query(insertQueryConsultas, [novaTag, novaQuantidade], (err, result) => {
+        if (err) {
+            console.error('Erro ao executar o INSERT:', err);
+            return;
+        }
+        console.log('Novo consulta inserida com sucesso!');
+        console.log('ID do novo usuário:', result.insertId);
+    });
+} 
+    
+function selectConsultas() { 
+    query = connection.promise().query(`SELECT * FROM consultas`).then(
         (result) => {
             console.log(result);
             return result;
@@ -56,4 +55,4 @@ const repository = async () => {
 }
 
 
-module.exports = repository;
+module.exports = {selectConsultas, inserirConsultas, inserirContagemTag};
