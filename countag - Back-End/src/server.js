@@ -1,9 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const {repository, inserirConsultas, inserirContagemTag} = require('./repository');
-const database = require("./database");
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser');
+
+const {repository, inserirConsultas, selectConsultas} = require('./repository');
+const database = require("./database");
 const PORT = 3003;
 
 
@@ -21,16 +22,36 @@ app.listen(PORT, () => {
     
 database();
     
-app.post('/api/inserir-consulta', async(req,res) => {
-    const query = await inserirConsultas(req.body.url);
-    console.log(req.body)
-    return res.status(201).json(query);
+app.post('/api/inserir', async(req,res) => {
+    const url = req.body.url
+   
+    try {
+        const queryConsulta = await inserirConsultas(url);
+
+        return (res.status(201).json(queryConsulta));
+
+    } catch (error) {
+        console.error("Erro ao inserir: ", error)
+    }
 })
 
-app.post('/api/inserir-contagem-tag', async(req,res) => {
-    const query = await inserirContagemTag(req.body.tag, req.body.quantidade);
-    return res.status(201).json(query);
-})
+app.get('/api/historico', async(req, res) => {
+    
+    try {
+        const queryHistorico = await selectConsultas();
+
+        return res.status(201).json(queryHistorico);
+
+    } catch (error) {
+        console.error("Erro ao carregar historico: ", error)
+    }
+}) 
+
+
+// app.post('/api/inserir-contagem-tag', async(req,res) => {
+    
+//     return res.status(201).json(query);
+// })
 
 
 app.get('/', async(req, res) => {
