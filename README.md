@@ -12,8 +12,7 @@ Ao instalar, não se esqueça do workbench.
 
 Após a instalação, o MySQL pedirá para você criar uma senha para conexão, copie essa senha e cole no arquivo connection.js, no campo "password":
 
-![image](https://github.com/carollbrunetto/countag/assets/74271137/d1573b4b-7894-4842-b80f-5b981dc90f84)
-
+![image](https://github.com/carollbrunetto/countag/assets/74271137/84c8b025-1604-4d2d-84e9-e4d1a46ecb72)
 
 - 2º passo:
   
@@ -32,7 +31,8 @@ O countag é composto de 3 telas:
 
 - Tela Home:
 
-![image](https://github.com/carollbrunetto/countag/assets/74271137/b88ee787-d39e-42fb-827e-22e910d004e9)
+![image](https://github.com/carollbrunetto/countag/assets/74271137/ed0ee85d-6fc0-49c7-ba0f-615a9a676a94)
+
 
 É nesta tela que a URL pode ser inserida, basta digitá-la no campo de pesquisa e pressionar enter ou clicar no ícone de lupa ao lado.
 
@@ -42,7 +42,8 @@ A tela Home pode ser acessada no item "Home" do menu ou clicando na logo.
 
 - Tela Histórico:
 
-![image](https://github.com/carollbrunetto/countag/assets/74271137/c2849f78-b985-4ad9-9802-c7113685d122)
+![image](https://github.com/carollbrunetto/countag/assets/74271137/76c09645-9bc5-428f-abb3-da03a937fe32)
+
 
 Nesta tela é possível visualizar uma listagem do histórico de consultas já feitas e também cada uma delas individualmente através do botão "Visualizar".
 
@@ -50,7 +51,8 @@ A tela Histórico pode ser acessada no item "Histórico" do menu.
 
 - Tela Visualizar Consulta:
 
-![image](https://github.com/carollbrunetto/countag/assets/74271137/59265b5d-0ab5-4faf-97f2-8c2841939e21)
+![image](https://github.com/carollbrunetto/countag/assets/74271137/37f80cc9-7c3d-4f9f-928b-eb19276f3abb)
+
 
 Nesta tela é possível ver os dados de uma consulta realizada anteriormente.
 
