@@ -1,0 +1,25 @@
+#titulo {
+    color: rgba(255, 87, 34, 1);
+    padding: 1rem;
+    position: inherit;
+}
+
+#textoURL,
+#textoData,
+#textoTitulo  {
+    color: rgba(255, 87, 34, 1);
+}
+
+#botao {
+    border-radius: 0.8rem;
+    background: #FF5722;
+    box-shadow: 0 0.05rem 0.05rem 0 rgba(0, 0, 0, 0.25);
+    height: 2rem;
+    width: 7rem;
+    
+}
+
+#link {
+    text-decoration: none;
+    color: #FFFF;
+}

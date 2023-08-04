@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Navbar from "../Components/Navbar";
-
+import '../styles/Historico.css';
 
 function Historico() {
     const [dados, setDados] = useState([]);
@@ -12,11 +12,6 @@ function Historico() {
             try {
                 const response = await axios.get('http://localhost:3003/api/historico');
                 setDados(response.data);
-                console.log(typeof dados)
-                // console.log("dados id: ", dados[0].id_consultas)
-                // console.log("dados url: ", dados[0].url)
-                // console.log("dados data: ", dados[0].data)
-                console.log(dados)
             } catch (error) {
                 console.error('Erro ao obter dados do backend:', error);
             }
@@ -25,41 +20,42 @@ function Historico() {
         fetchData();
     }, []);
 
-
     return (
         <div>
             <Navbar />
 
-            <h1>Histórico de URLs</h1>
+            <h2 id="titulo">Histórico de URLs</h2>
 
             <table className="table table-hover">
                 <thead>
                     <tr> 
-                        <th> URLs </th>
+                        <th id="textoTitulo"> URLs </th>
                     </tr>
                     <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">URL</th>
+                        <th scope="col" id="textoData">Data</th>
+                        <th scope="col" id="textoURL">URL</th>
                     </tr>
                 </thead>
                 <tbody>
                     {dados?.length > 0 && dados?.map((consulta) => (
                         
-                            <tr key={consulta.id_consultas}>
-                                <td>
-                                    {consulta.data}
-                                </td>
-                                <td>
-                                    {consulta.url}
-                                </td>
-                                <td>
-                                    <Link to ='../visualizar-consulta' state={{
+                        <tr key={consulta.id_consultas}>
+                            <td>
+                                {consulta.data}
+                            </td>
+                            <td>
+                                {consulta.url}
+                            </td>
+                            <td>
+                                <button id="botao">
+                                    <Link id="link" to ='../visualizar-consulta' state={{
                                         id: consulta.id_consultas,
                                         data: consulta.data,
                                         url: consulta.url
-                                    }}>Vizualizar</Link>
-                                </td>
-                            </tr>
+                                    }}>Visualizar</Link>
+                                </button>
+                            </td>
+                        </tr>
                         
                     ))}
                 </tbody>

@@ -1,0 +1,18 @@
+.tabela {
+    border-radius: 10%!important;
+    width: 80%; 
+    height: 80%;
+    margin: 30px!important;
+    padding: 1rem;
+}
+
+#textoTitulo, 
+#textoColunaQuant, 
+#textoColunaTag, 
+#textoURL,
+#textoData {
+    color: rgba(255, 87, 34, 1);
+}
+
+
+

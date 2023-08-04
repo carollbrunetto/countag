@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import '../styles/TabelaContagem.css';
+
 
 function TabelaContagem(
     props
@@ -9,37 +11,31 @@ function TabelaContagem(
     const url = props.url;
     const data = props.data;
 
-    console.log("dados tabela: ", dados)
-    console.log("campo data: ", campoData)
-    console.log("url tabela: ", url)
-    console.log("data tabela: ", data)
-
     return (
-
-        <table className="table table-hover">
+        <table className="table table-hover bordered tabela">
             <thead>
                 <tr> 
-                    <th> Contagem de Tags </th>
+                    <th id="textoTitulo"> Contagem de Tags </th>
                 </tr>
                 <tr> 
-                    <th> URL: </th>
+                    <th id="textoURL"> URL: </th>
                     <td>{url}</td>
                 
                     {campoData && (
                         <>
-                            <th> Data: </th>
+                            <th id="textoData"> Data: </th>
                             <td>{data}</td>
                         </>
                     )}
                 </tr>
                 <tr>
-                    <th scope="col">Tags</th>
-                    <th scope="col">Quantidade</th>
+                    <th scope="col" id="textoColunaTag">Tags</th>
+                    <th scope="col" id="textoColunaQuant">Quantidade</th>
                 </tr>
             </thead>
             <tbody>
                 
-                {dados.length > 0 && dados?.map((item)  => (
+                {dados?.length > 0 && dados?.map((item)  => (
 
                     <tr key={item.id_contagemTag}>
                         <td>

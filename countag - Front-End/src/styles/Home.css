@@ -1,0 +1,37 @@
+#pesquisa{
+    border-radius: 5rem;
+    margin-top: 10rem !important;
+    width: auto !important;
+    overflow: hidden;
+    align-items: center;
+}
+
+#inputPesquisa {
+    background-color: rgba(255, 238, 233, 1);
+    border-color: rgba(255, 87, 34, 1);
+    width: 40rem !important;
+    height: 3rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+#cartao {
+   border-radius: 2rem;
+   margin-top: 8rem !important;
+   height: 10rem;
+   width: 50rem;
+   border-color: rgba(255, 87, 34, 1);
+   background-color: rgba(255, 238, 233, 1);
+  
+}
+
+#cartao.p {
+    word-wrap: break-word;
+    text-align: left !important;
+    padding-bottom: 1rem !important;
+}
+
+#iconeSearch {
+    color: rgba(255, 87, 34, 1);
+    width: 48px;
+}

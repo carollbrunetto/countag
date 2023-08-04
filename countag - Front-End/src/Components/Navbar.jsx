@@ -1,12 +1,12 @@
 import React from "react";
-import Historico from "../Pages/Historico";
+import '../styles/Navbar.css';
 
 function Navbar() {
 
     return (
 
-        <nav className='navbar navbar-expand-lg'>
-            <a className='navbar-brand' href='#'>&lt;countag/&gt;</a>
+        <nav className='navbar navbar-expand-lg' id="barra-nav" >
+            <a className='navbar-brand' id="logo" href='/'>&lt;countag/&gt;</a>
             <button
             className="navbar-toggler"
             type="button"
@@ -16,13 +16,13 @@ function Navbar() {
             aria-expanded="false"
             aria-label="Alterna navegação"
             >
-                <span className="navbar-toggler-icon"></span>
+                <span className='navbar-toggler-icon'></span>
             </button>
 
             <div className="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                <ul className="navbar-nav mr-auto">
+                <ul className="navbar-nav mr-auto" id="grupo">
                     <li className="nav-item active">
-                        <a className="nav-link" href="/">
+                        <a className="nav-link itens" id="itemHome" href="/">
                             Home 
                         </a>
                     </li>
@@ -32,7 +32,7 @@ function Navbar() {
                     </li>
 
                     <li className="nav-item active">
-                        <a className="nav-link" href={'/historico'}>
+                        <a className="nav-link itens-barra" id="itemHistorico" href={'/historico'}>
                             Histórico 
                         </a>
                     </li>
