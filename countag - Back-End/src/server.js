@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
-const {repository, inserirConsultas, selectConsultas} = require('./repository');
+const {repository, inserirConsultas, selectConsultas, selectContagemPorId} = require('./repository');
 const database = require("./database");
 const PORT = 3003;
 
@@ -46,6 +46,19 @@ app.get('/api/historico', async(req, res) => {
         console.error("Erro ao carregar historico: ", error)
     }
 }) 
+
+app.get('/api/visualizar-consulta/:id', async(req, res) => {
+    
+    try {
+        const queryVisualizar = await selectContagemPorId(req.params.id);
+
+        return res.status(201).json(queryVisualizar);
+
+    } catch (error) {
+        console.error("Erro ao carregar contagem da consulta: ", error)
+    }
+}) 
+
 
 
 // app.post('/api/inserir-contagem-tag', async(req,res) => {

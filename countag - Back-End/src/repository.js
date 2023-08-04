@@ -7,14 +7,10 @@ async function inserirConsultas(url) {
     let resultado = [];
 
     try {
-
         resultado = await contaTags(url);
-
     } catch (err) {
-
         console.error('URL inválida ou indisponível: ', err);
-        return ('URL inválida ou indisponível');
-
+        return ['URL inválida ou indisponível'];
     }
 
     const insertQueryConsultas = 'INSERT INTO consultas (url, data) VALUES (?, ?)';
@@ -26,7 +22,10 @@ async function inserirConsultas(url) {
 
         await inserirContagemTag(result.insertId, resultado);
 
-        return { consultas: await selectConsultas(), contagem: await selectContagem() };
+        const consultas = await selectConsultas();
+        const contagemConsulta = await selectContagemPorId(result.insertId);
+
+        return [{ consultas, contagemConsulta }];
     } catch (err) {
         console.error('Erro ao executar o INSERT:', err);
         throw err; 
@@ -64,6 +63,17 @@ async function selectConsultas() {
     }
 }
 
+async function selectContagemPorId(idConsulta) {
+    try {
+        const [result] = await connection.promise().query('SELECT * FROM contagem_tag WHERE consultas_id_consultas = ?', [idConsulta]);
+        console.log(result);
+        return result;
+    } catch (err) {
+        console.error('Erro ao CONSULTAR: ', err);
+        throw err; 
+    }
+}
+
 async function selectContagem() {
     try {
         const [result] = await connection.promise().query(`SELECT * FROM contagem_tag`);
@@ -75,4 +85,4 @@ async function selectContagem() {
     }
 }
 
-module.exports = { selectConsultas, inserirConsultas, inserirContagemTag, selectContagem };
+module.exports = { selectConsultas, inserirConsultas, inserirContagemTag, selectContagem, selectContagemPorId };
