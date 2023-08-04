@@ -1,35 +1,27 @@
 import './App.css';
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from '../src/Pages/Home';
+import Historico from './Pages/Historico';
+import Visualizar from './Pages/VisualizarConsulta'
 
 function App() {
 
-  const [url, setUrl] = useState('');
-  const [dat, setDat] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:3003/api/inserir-consulta', {url, dat})
-      .then((response) => {
-        console.log(response.data)
-    }).catch((error) => {
-      console.error('Erro ao enviar formulário:', error)
-    })
-  }
-
   return (
-    <div className="teste">
-      <h1>Formulário de Cadastro</h1>
-      
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="url" >URL:</label>
-        <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)}  />
-        <label htmlFor="data">Data:</label>
-        <input type="date" id="data" value={dat} onChange={(e) => setDat(e.target.value)}  />
-        <button type="submit">Enviar</button>
-      </form>
+    <div className='app'>
+        <BrowserRouter>
+        
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/historico" element={<Historico/>}/>
+            <Route exact path="/visualizar-consulta" element={<Visualizar/>}/>
+          </Routes>
+        
+        </BrowserRouter>
     </div>
-  );
+
+  )
 }                 
 
 export default App;
