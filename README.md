@@ -1,6 +1,7 @@
 # O countag
 
 O countag tem como objetivo contar as tags HTML de uma URL fornecida por um usuário. Além disso, também é possível visualizar o histórico de consultas feitas por esse usuário.
+
 Esse projeto foi desenvolvido utilizando as tecnologias Node.js e React para back-end e front-end, respectivamente. O banco de dados utilizado foi o MySQL.
 
 ## Como instalar:
