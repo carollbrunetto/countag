@@ -5,31 +5,23 @@ async function contaTags(url) {
     try {
         const response = await axios.get(url);
         const html = response.data;
-        
-        // console.log("html: ", html)
     
         const dom = new JSDOM(html)
         const document = dom.window.document
     
-        // console.log("dom:", dom)
-        // console.log(dom)
-        const tags = document.getElementsByTagName('*')
-        const tags2= Array.from(tags)
+        const tagsDocument = document.getElementsByTagName('*')
+        const tagsArray= Array.from(tagsDocument)
 
-        // console.log("tags:", tags)
-        // console.log("tags2:", tags2)
-        
         resultado = {}
     
-        for(var i = 0; i < tags2.length; i++) {
-            if(resultado[tags2[i].tagName]){
+        for(var i = 0; i < tagsArray.length; i++) {
+            if(resultado[tagsArray[i].tagName]){
                 
-                resultado[tags2[i].tagName]++
+                resultado[tagsArray[i].tagName]++
             
-            } else resultado[tags2[i].tagName] = 1
+            } else resultado[tagsArray[i].tagName] = 1
         }
-    
-        console.log("resultado:", resultado);
+
         return resultado;
 
     } catch (error) {

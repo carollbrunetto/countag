@@ -3,19 +3,22 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
-const {repository, inserirConsultas, selectConsultas, selectContagemPorId} = require('./repository');
-const database = require("./database");
+const {repository, inserirConsultas, selectConsultas, selectContagemPorId} = require('../repository/repository');
+const database = require("../database/database");
 const PORT = 3003;
-
 
 app.use(cors())
 
-//as resquisições serão no formato json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use('/public', express.static(__dirname + "/public", {
+    index: false, 
+    immutable: true, 
+    cacheControl: true,
+    maxAge: "30d"
+}));
 
-//o servidor funcionará na porta 3003
 app.listen(PORT, () => {
     console.log(`Funcionando na porta ${PORT}`)
 }); 
@@ -58,14 +61,6 @@ app.get('/api/visualizar-consulta/:id', async(req, res) => {
         console.error("Erro ao carregar contagem da consulta: ", error)
     }
 }) 
-
-
-
-// app.post('/api/inserir-contagem-tag', async(req,res) => {
-    
-//     return res.status(201).json(query);
-// })
-
 
 app.get('/', async(req, res) => {
     const query = await repository();

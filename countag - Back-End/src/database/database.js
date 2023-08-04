@@ -10,7 +10,6 @@ const database = () => {
             return;
         }
     
-        console.log(`-------------------Banco de dados "${databaseName}" dropado-------------------`)
     });
 
     connection.query(`CREATE DATABASE IF NOT EXISTS ${databaseName}`, (erro, result) => {
@@ -19,7 +18,6 @@ const database = () => {
             return;
         }
     
-        console.log(`-------------------Banco de dados "${databaseName}" criado-------------------`)
     });
     
     connection.query(`USE ${databaseName}`, (erro, result) => {
@@ -28,14 +26,13 @@ const database = () => {
             return;
         }
     
-        console.log(`-------------------Usando o banco de dados "${databaseName}"-------------------`);
     });
     
     const createTableConsultasQuery = `
         CREATE TABLE if not exists consultas (
             id_consultas serial  NOT NULL AUTO_INCREMENT,
             url varchar(5000)  NOT NULL,
-            data datetime  NOT NULL,
+            data datetime NOT NULL,
             CONSTRAINT consultas_pk PRIMARY KEY (id_consultas)
         )
     `;
@@ -58,7 +55,6 @@ const database = () => {
             return;
         }
     
-        console.log(`-------------------Tabela "consultas" criada-------------------`);
     });
     
     
@@ -68,17 +64,8 @@ const database = () => {
             return;
         }
     
-        console.log(`-------------------Tabela "contagem_tag" criada-------------------`);
     });
     
-    // connection.end((erro) => {
-    //     if (erro) {
-    //       console.error('Erro ao encerrar a conexão:', erro);
-    //       return;
-    //     }
-    //     console.log('-------------------Conexão encerrada-------------------');
-    // });
-      
 }
 
 module.exports = database;

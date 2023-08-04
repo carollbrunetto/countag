@@ -1,5 +1,5 @@
-const connection = require('./connection');
-const contaTags = require('./tagCounter');
+const connection = require('../database/connection');
+const contaTags = require('../helpers/tagCounter');
 
 async function inserirConsultas(url) {
     const novaURL = url;
@@ -14,11 +14,8 @@ async function inserirConsultas(url) {
     }
 
     const insertQueryConsultas = 'INSERT INTO consultas (url, data) VALUES (?, ?)';
-
     try {
         const [result] = await connection.promise().query(insertQueryConsultas, [novaURL, novaData]);
-        console.log('Nova consulta inserida com sucesso!');
-        console.log('ID da nova consulta:', result.insertId);
 
         await inserirContagemTag(result.insertId, resultado);
 
@@ -40,11 +37,8 @@ async function inserirContagemTag(idConsulta, resultado) {
         const novaQuantidade = resultado[novaTag];
 
         const insertQueryContagemTag = 'INSERT INTO contagem_tag (tag, quantidade, consultas_id_consultas) VALUES (?, ?, ?)';
-
         try {
             const [result] = await connection.promise().query(insertQueryContagemTag, [novaTag, novaQuantidade, idConsulta]);
-            console.log('Nova contagem inserida com sucesso!');
-            console.log('ID da nova contagem:', result.insertId);
         } catch (err) {
             console.error('Erro ao executar o INSERT:', err);
             throw err; 
@@ -55,7 +49,6 @@ async function inserirContagemTag(idConsulta, resultado) {
 async function selectConsultas() {
     try {
         const [result] = await connection.promise().query(`SELECT * FROM consultas`);
-        console.log(result);
         return result;
     } catch (err) {
         console.error('Erro ao CONSULTAR: ', err);
@@ -66,7 +59,6 @@ async function selectConsultas() {
 async function selectContagemPorId(idConsulta) {
     try {
         const [result] = await connection.promise().query('SELECT * FROM contagem_tag WHERE consultas_id_consultas = ?', [idConsulta]);
-        console.log(result);
         return result;
     } catch (err) {
         console.error('Erro ao CONSULTAR: ', err);
@@ -77,7 +69,6 @@ async function selectContagemPorId(idConsulta) {
 async function selectContagem() {
     try {
         const [result] = await connection.promise().query(`SELECT * FROM contagem_tag`);
-        console.log(result);
         return result;
     } catch (err) {
         console.error('Erro ao CONSULTAR: ', err);
