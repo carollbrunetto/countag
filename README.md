@@ -17,7 +17,7 @@ Após a instalação, o MySQL pedirá para você criar uma senha para conexão, 
 
 - 2º passo:
   
-Se seu computador não tiver o Node.js instalado e React baixado, é necessário realizar ambos.
+Se seu computador não tiver o Node.js instalado e React baixado, é necessário realizar ambos. A versão do Node utilizada foi a 18.13.0.
 
 - 3º passo:
   
